@@ -189,6 +189,19 @@ blockManager.add('youtube-block', {
   },
   
 });
+
+blockManager.add('airtable-block', {
+  label: 'AirTable',
+  content: '',
+  category: 'Embeds',
+  attributes: {
+    title: 'Embed YouTube video',
+    id:'airtable-block',
+    onclick: 'getAirtableSettings()',
+    class:'fas fa-dice-d6'
+  },
+  
+});
 // <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0LhDyJXelg31FKLW5GDcKi?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 function getSpotifySettings () {
   let modal = editor.Modal;
@@ -219,6 +232,25 @@ function getYoutubeSettings() {
 modal.onceClose = (data) => {
   console.log("document.getElementById('youtube-block').innerHTML()"+data);
 }
+}
+function getAirtableSettings() {
+  let modal = editor.Modal;
+  modal.open({
+  title: 'Table Link',
+  content: `<form>
+  <label for="url">Enter URL:</label><br>
+  <input type="text" id="url" name="url" value="Table URL"><br><br>
+  <input type="button" value="Submit" onclick="createAirtableEmbed(url.value)">
+</form>`,
+  attributes: { class: 'my-class', onsubmit: "createAirtableEmbed(url.value)" }
+});
+}
+function createAirtableEmbed(str) {
+  let src = "https://airtable.com/embed/"+str.substring(str.search("com/")+4)+"?backgroundColor=purple&viewControls=on"
+  console.log(src);
+  let spotifyEmbed = '<iframe class="airtable-embed" src='+src+'frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>';
+  editor.addComponents(spotifyEmbed);
+  editor.Modal.close()
 }
 function createSpotifyEmbed(data) {
   let src = data.substring(0, data.search('/pl'))+'/embed'+data.substring(data.search('/pl'), data.search('\\?'));
