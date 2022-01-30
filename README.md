@@ -2,6 +2,9 @@
 
 ***DEV 01:***
 
+Demo: https://youtu.be/k0Vfvcb_MmE
+Live: https://m-aish.github.io/TRINIT_UntitledTeam_DEV01/
+
 Our project makes use of the GrapeJS framework. Our website is very user-friendly and it allows for users to build a website from scratch by just dragging and dropping elements.
 
 Our website provides the ability for the user to add columns, texts, images, links, videos, maps and so on.
