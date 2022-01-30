@@ -7,8 +7,23 @@ html {
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  box-shadow: 20px 20px 50px #00d2c6, 
+            -30px -30px 60px #00ffff;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+/* .gjs-pn-buttons {
+  background-color: #e63946;
+} */
+.gjs-two-color {
+  background-color: #1d3557;
+}
+.gjs-pn-btn {
+  
+  color:#f1faee;
+}
+.gjs-four-color-h {
+  background-color: #1d3557;
 }

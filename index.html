@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,8 +7,6 @@
     <title>Grapes JS Example</title>
     <script src="js/lib/grapes.min.js"></script>
     <link rel="stylesheet" href="css/lib/grapes.min.css" />
-
-    <!-- Add Style and Script for Preset Webpage Builder -->
     <script src="js/lib/grapesjs-preset-webpage.min.js"></script>
     <link rel="stylesheet" href="css/lib/grapesjs-preset-webpage.min.css" />
 
@@ -21,4 +19,218 @@
 
     <script type="text/javascript" src="js/main.js"></script>
   </body>
-</html>
+</html> -->
+
+<link rel="stylesheet" href="css/lib/grapes.min.css" />
+<link href="/css/lib/grapesjs-preset-webpage.min.css" rel="stylesheet"/>
+<script src="/js/lib/grapes.min.js"></script>
+<script src="js/lib/grapesjs-preset-webpage.min.js"></script>
+<link rel="stylesheet" href="../css/main.css" />
+<div id="gjs"></div>
+
+<script type="text/javascript">
+  var editor = grapesjs.init({
+      container : '#gjs',
+      fromElement: true,
+      plugins: ['gjs-preset-webpage'],
+      storageManager: false,
+      pluginsOpts: {
+        'gjs-preset-webpage': {
+          // options
+        }
+      }
+  });
+  const blockManager = editor.BlockManager;
+  console.log(blockManager.getAll());
+ blockManager.get("link").set({content:{content: "<a aria-label='Anchor Link'>Link</a>",
+style: {color: '#d983a6'},
+type: "link"},
+alt:"Anchor link"});
+// class: "gjs-fonts gjs-f-image"
+blockManager.get("h-navbar").set({content:
+`
+        <div class="navbar" title="Navigation Bar" data-gjs-droppable="false" data-gjs-custom-name="Navbar" data-gjs="navbar">
+          <div class="navbar-container" data-gjs-droppable="false" data-gjs-draggable="false"
+            data-gjs-removable="false" data-gjs-copyable="false" data-gjs-highlightable="false"
+            data-gjs-custom-name="Navbar Container">
+
+            <a href="/" class="navbar-brand" data-gjs-droppable="true"></a>
+
+            <div class="navbar-burger" data-gjs-type="burger-menu">
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+            </div>
+
+            <div class="navbar-items-c" data-gjs="navbar-items">
+              <nav class="navbar-menu" data-gjs="navbar-menu" data-gjs-custom-name="Navbar Menu">
+                <a href="#" title="Home" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">Home</a>
+                <a href="#" title="About" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">About</a>
+                <a href="#" title="Contact" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">Contact</a>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+        
+  <style>
+    .navbar-items-c {
+      display: inline-block;
+      float: right;
+    }
+
+    .navbar {
+      background-color: #222;
+      color: #ddd;
+      min-height: 50px;
+      width: 100%;
+    }
+
+    .navbar-container {
+      max-width: 950px;
+      margin: 0 auto;
+      width: 95%;
+    }
+
+    .navbar-container::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    .navbar-brand {
+      vertical-align: top;
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar-menu {
+      padding: 10px 0;
+      display: block;
+      float: right;
+      margin: 0;
+    }
+
+    .navbar-menu-link {
+      margin: 0;
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 15px;
+    }
+
+    .navbar-burger {
+      margin: 10px 0;
+      width: 45px;
+      padding: 5px 10px;
+      display: none;
+      float: right;
+      cursor: pointer;
+    }
+
+    .navbar-burger-line {
+      padding: 1px;
+      background-color: white;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-burger {
+        display: block;
+      }
+
+      .navbar-items-c {
+        display: none;
+        width: 100%;
+      }
+
+      .navbar-menu {
+        width: 100%;
+      }
+
+      .navbar-menu-link {
+        display: block;
+      }
+    }
+  </style>
+  
+  `
+})
+//  blockManager.get("link").set({style:{color:"red"}});
+  // https://www.youtube.com/watch?v=2mn20K6diGU
+  
+  blockManager.add('spotify-block', {
+  label: 'Spotify',
+  content: '',
+  category: 'Embeds',
+  attributes: {
+    title: 'Embed Spotify playlist',
+    id:'spotify-block',
+    onclick: 'getSpotifySettings()',
+    class:'fa fa-spotify'
+  },
+  
+});
+
+blockManager.add('youtube-block', {
+  label: 'YouTube',
+  content: '',
+  category: 'Embeds',
+  attributes: {
+    title: 'Embed YouTube video',
+    id:'youtube-block',
+    onclick: 'getYoutubeSettings()',
+    class:'fa fa-youtube'
+  },
+  
+});
+// <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0LhDyJXelg31FKLW5GDcKi?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+function getSpotifySettings () {
+  let modal = editor.Modal;
+  modal.open({
+  title: 'Playlist Link',
+  content: `<form>
+  <label for="url">Enter URL:</label><br>
+  <input type="text" id="url" name="url" value="Playlist URL"><br><br>
+  <input type="button" value="Submit" onclick="createSpotifyEmbed(url.value)">
+</form>`,
+  attributes: { class: 'my-class', onsubmit: "createSpotifyEmbed(url.value)" }
+});
+modal.onceClose = (data) => {
+  console.log("document.getElementById('spotify-block').innerHTML()"+data);
+}
+}
+function getYoutubeSettings() {
+  let modal = editor.Modal;
+  modal.open({
+  title: 'Video Link',
+  content: `<form>
+  <label for="url">Enter URL:</label><br>
+  <input type="text" id="url" name="url" value="Video URL"><br><br>
+  <input type="button" value="Submit" onclick="createYoutubeEmbed(url.value)">
+</form>`,
+  attributes: { class: 'my-class', onsubmit: "createYoutubeEmbed(url.value)" }
+});
+modal.onceClose = (data) => {
+  console.log("document.getElementById('youtube-block').innerHTML()"+data);
+}
+}
+function createSpotifyEmbed(data) {
+  let src = data.substring(0, data.search('/pl'))+'/embed'+data.substring(data.search('/pl'), data.search('\\?'));
+  console.log(src);
+  let spotifyEmbed = '<iframe src='+src+ ` width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Embedded Spotify Playlist"></iframe>`
+  editor.addComponents(spotifyEmbed);
+  editor.Modal.close()
+}
+function createYoutubeEmbed(data) {
+  let src = data.substring(0, data.search('/watch'))+'/embed/'+data.substring(data.search("=")+1);
+  console.log(src);
+  let ytEmbed = '<iframe src='+src+ ` width="420" height="315" title="Embedded YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  editor.addComponents(ytEmbed);
+  editor.Modal.close()
+}
+</script>
