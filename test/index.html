@@ -1,0 +1,63 @@
+<link href="../css/lib/grapes.min.css" rel="stylesheet"/>
+<link href="../css/lib/grapesjs-preset-webpage.min.css" rel="stylesheet"/>
+<script src="../js/lib/grapes.min.js"></script>
+<script src="../js/lib/grapesjs-preset-webpage.min.js"></script>
+<link rel="stylesheet" href="../css/main.css" />
+<div id="gjs"><div id="spoti"></div></div>
+
+<script type="text/javascript">
+  var editor = grapesjs.init({
+      container : '#gjs',
+      fromElement: true,
+      plugins: ['gjs-preset-webpage'],
+      storageManager: false,
+      pluginsOpts: {
+        'gjs-preset-webpage': {
+          // options
+        }
+      }
+  });
+  const blockManager = editor.BlockManager;
+  
+  
+  blockManager.add('spotify-block', {
+  label: 'Spotify',
+  content: '',
+  category: 'Embeds',
+  attributes: {
+    title: 'Embed Spotify playlist',
+    id:'spotify-block',
+    onclick: 'getSpotifySettings()',
+    class:'fa fa-spotify'
+  },
+  
+});
+// <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0LhDyJXelg31FKLW5GDcKi?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+function getSpotifySettings () {
+  const modal = editor.Modal;
+  modal.open({
+  title: 'Playlist Link',
+  content: `<form>
+  <label for="url">Enter URL:</label><br>
+  <input type="text" id="url" name="url" value="Playlist URL"><br><br>
+  <input type="button" value="Submit" onclick="test(url.value)">
+</form>`,
+  attributes: { class: 'my-class', onsubmit: "test(url.value)" }
+});
+modal.onceClose = (data) => {
+  console.log("document.getElementById('spotify-block').innerHTML()"+data);
+}
+}
+function test(data) {
+  let src = data.substring(0, data.search('/pl'))+'/embed'+data.substring(data.search('/pl'), data.search('\\?'));
+  console.log(src);
+  //console.log(data.firstIndexOf("playlist/"))
+  //let idx = '"https://open.spotify.com/embed/playlist/'+data.substring(32, data.search('\\?'))+'"'
+  let spotifyEmbed = '<iframe src='+src+ ` width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+  editor.addComponents(spotifyEmbed);
+  editor.Modal.close()
+}
+// blockManager.get('spotify-block').onClick = (block, editor) => {console.log("hi")}
+// It's also possible to pass the command as an object
+// with .run and .stop methods
+</script>
