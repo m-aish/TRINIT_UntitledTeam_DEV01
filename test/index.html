@@ -3,7 +3,7 @@
 <script src="../js/lib/grapes.min.js"></script>
 <script src="../js/lib/grapesjs-preset-webpage.min.js"></script>
 <link rel="stylesheet" href="../css/main.css" />
-<div id="gjs"><div id="spoti"></div></div>
+<div id="gjs"></div>
 
 <script type="text/javascript">
   var editor = grapesjs.init({
@@ -79,14 +79,14 @@ modal.onceClose = (data) => {
 function createSpotifyEmbed(data) {
   let src = data.substring(0, data.search('/pl'))+'/embed'+data.substring(data.search('/pl'), data.search('\\?'));
   console.log(src);
-  let spotifyEmbed = '<iframe src='+src+ ` width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+  let spotifyEmbed = '<iframe src='+src+ ` width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Embedded Spotify Playlist"></iframe>`
   editor.addComponents(spotifyEmbed);
   editor.Modal.close()
 }
 function createYoutubeEmbed(data) {
   let src = data.substring(0, data.search('/watch'))+'/embed/'+data.substring(data.search("=")+1);
   console.log(src);
-  let ytEmbed = '<iframe src='+src+ ` width="420" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  let ytEmbed = '<iframe src='+src+ ` width="420" height="315" title="Embedded YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
   editor.addComponents(ytEmbed);
   editor.Modal.close()
 }
