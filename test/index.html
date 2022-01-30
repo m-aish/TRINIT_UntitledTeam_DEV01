@@ -18,6 +18,126 @@
       }
   });
   const blockManager = editor.BlockManager;
+  console.log(blockManager.getAll());
+ blockManager.get("link").set({content:{content: "<a aria-label='Anchor Link'>Link</a>",
+style: {color: '#d983a6'},
+type: "link"},
+alt:"Anchor link"});
+// class: "gjs-fonts gjs-f-image"
+blockManager.get("h-navbar").set({content:
+`
+        <div class="navbar" title="Navigation Bar" data-gjs-droppable="false" data-gjs-custom-name="Navbar" data-gjs="navbar">
+          <div class="navbar-container" data-gjs-droppable="false" data-gjs-draggable="false"
+            data-gjs-removable="false" data-gjs-copyable="false" data-gjs-highlightable="false"
+            data-gjs-custom-name="Navbar Container">
+
+            <a href="/" class="navbar-brand" data-gjs-droppable="true"></a>
+
+            <div class="navbar-burger" data-gjs-type="burger-menu">
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+              <div class="navbar-burger-line" data-gjs-custom-name="Burger Line" data-gjs-droppable="false" data-gjs-draggable="false"></div>
+            </div>
+
+            <div class="navbar-items-c" data-gjs="navbar-items">
+              <nav class="navbar-menu" data-gjs="navbar-menu" data-gjs-custom-name="Navbar Menu">
+                <a href="#" title="Home" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">Home</a>
+                <a href="#" title="About" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">About</a>
+                <a href="#" title="Contact" class="navbar-menu-link" data-gjs-custom-name="Menu link" data-gjs-draggable="[data-gjs=navbar-menu]">Contact</a>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+        
+  <style>
+    .navbar-items-c {
+      display: inline-block;
+      float: right;
+    }
+
+    .navbar {
+      background-color: #222;
+      color: #ddd;
+      min-height: 50px;
+      width: 100%;
+    }
+
+    .navbar-container {
+      max-width: 950px;
+      margin: 0 auto;
+      width: 95%;
+    }
+
+    .navbar-container::after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    .navbar-brand {
+      vertical-align: top;
+      display: inline-block;
+      padding: 5px;
+      min-height: 50px;
+      min-width: 50px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar-menu {
+      padding: 10px 0;
+      display: block;
+      float: right;
+      margin: 0;
+    }
+
+    .navbar-menu-link {
+      margin: 0;
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 15px;
+    }
+
+    .navbar-burger {
+      margin: 10px 0;
+      width: 45px;
+      padding: 5px 10px;
+      display: none;
+      float: right;
+      cursor: pointer;
+    }
+
+    .navbar-burger-line {
+      padding: 1px;
+      background-color: white;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-burger {
+        display: block;
+      }
+
+      .navbar-items-c {
+        display: none;
+        width: 100%;
+      }
+
+      .navbar-menu {
+        width: 100%;
+      }
+
+      .navbar-menu-link {
+        display: block;
+      }
+    }
+  </style>
+  
+  `
+})
+//  blockManager.get("link").set({style:{color:"red"}});
   // https://www.youtube.com/watch?v=2mn20K6diGU
   
   blockManager.add('spotify-block', {
